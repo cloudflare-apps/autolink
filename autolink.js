@@ -20,8 +20,6 @@
     },
     process: function(node) {
       if (node.nodeType === 3) {
-        console.log('node', node.textContent);
-
         var text = node.textContent;
         var linkedText = Autolinker.link(text);
 
