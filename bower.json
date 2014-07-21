@@ -1,0 +1,17 @@
+{
+  "name": "autolink",
+  "version": "0.0.1",
+  "authors": [
+    "Adam Schwartz <adam@eager.io>"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "Autolinker.js": "~0.11.1"
+  }
+}

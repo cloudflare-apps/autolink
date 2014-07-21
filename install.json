@@ -1,0 +1,29 @@
+{
+  "resources": {
+    "body": [
+      {
+        "type": "script",
+        "src": "./bower_components/Autolinker.js/dist/Autolinker.js"
+      },
+      {
+        "type": "script",
+        "src": "./autolink.js"
+      },
+      {
+        "type": "script",
+        "contents": "AutoLink.init(EAGER_OPTIONS)"
+      }
+    ]
+  },
+  "options": {
+    "properties": {
+      "location": {
+        "title": "Location",
+        "description": "You may optionally specify a part of the page to be autolinked. Leave this blank to autolink the entire page.",
+        "type": "string",
+        "format": "selector",
+        "default": ""
+      }
+    }
+  }
+}
