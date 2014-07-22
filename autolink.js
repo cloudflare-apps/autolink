@@ -4,7 +4,7 @@
   }
 
   maxLinksPerNode = 9999;
-  doNotTraverseTheseElements = ['script', 'br', 'col', 'command', 'hr', 'img', 'input', 'keygen', 'link', 'meta', 'param', 'source', 'track', 'wbr', 'video', 'iframe'];
+  doNotTraverseTheseElements = ['a', 'script', 'br', 'col', 'command', 'hr', 'img', 'input', 'keygen', 'link', 'meta', 'param', 'source', 'track', 'wbr', 'video', 'iframe'];
 
   var AutoLink = {
     init: function(selector) {
