@@ -3,6 +3,10 @@
     console.error('Autolinker.js is required for AutoLink to work');
   }
 
+  if (!Array.prototype.indexOf) {
+    return;
+  }
+
   maxLinksPerNode = 9999;
   doNotTraverseTheseElements = ['a', 'script', 'br', 'col', 'command', 'hr', 'img', 'input', 'keygen', 'link', 'meta', 'param', 'source', 'track', 'wbr', 'video', 'iframe'];
 
