@@ -11,7 +11,7 @@
       },
       {
         "type": "script",
-        "contents": "AutoLink.init(EAGER_OPTIONS)"
+        "contents": "AutoLink.init(INSTALL_OPTIONS)"
       }
     ]
   },
