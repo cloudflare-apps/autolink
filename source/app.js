@@ -1,6 +1,7 @@
 (function () {
   var options = INSTALL_OPTIONS
   var Node = window.Node
+  var autolinker
   var ineligibleTags = [
     'a',
     'script',
@@ -20,26 +21,6 @@
     'video',
     'iframe'
   ]
-
-  var autolinker = new window.Autolinker({
-    urls: {
-      schemeMatches: true,
-      wwwMatches: true,
-      tldMatches: true
-    },
-    email: options.email,
-    phone: options.phone,
-    mention: options.mention === 'none' ? false : options.mention,
-    hashtag: options.hashtag === 'none' ? false : options.hashtag,
-    stripPrefix: options.stripPrefix,
-    newWindow: options.newWindow,
-    truncate: {
-      length: 0,
-      location: 'end'
-    },
-    stripTrailingSlash: false,
-    className: ''
-  })
 
   function parse (node) {
     if (node.nodeType === Node.ELEMENT_NODE && ineligibleTags.indexOf(node.tagName.toLowerCase()) !== -1) {
@@ -64,6 +45,7 @@
       node.parentNode.replaceChild(fragment, node)
     }
   }
+
   function bootstrap () {
     var parentNode
 
@@ -73,6 +55,26 @@
       parentNode = document.body
     }
 
+    autolinker = new window.Autolinker({
+      urls: {
+        schemeMatches: true,
+        wwwMatches: true,
+        tldMatches: true
+      },
+      email: options.email,
+      phone: options.phone,
+      mention: options.mention === 'none' ? false : options.mention,
+      hashtag: options.hashtag === 'none' ? false : options.hashtag,
+      stripPrefix: options.stripPrefix,
+      newWindow: options.newWindow,
+      truncate: {
+        length: 0,
+        location: 'end'
+      },
+      stripTrailingSlash: false,
+      className: INSTALL_ID === 'preview' ? 'cf-app-autolink-preview' : ''
+    })
+
     parse(parentNode)
   }
 
@@ -80,5 +82,22 @@
     document.addEventListener('DOMContentLoaded', bootstrap)
   } else {
     bootstrap()
+  }
+
+  window.INSTALL_SCOPE = {
+    setOptions: function setOptions (nextOptions) {
+      options = nextOptions
+
+      var links = document.querySelectorAll('.cf-app-autolink-preview')
+
+      for (var i = 0; i < links.length; i++) {
+        var link = links[i]
+        var textNode = document.createTextNode(link.textContent)
+
+        link.parentNode.replaceChild(textNode, link)
+      }
+
+      bootstrap()
+    }
   }
 }())

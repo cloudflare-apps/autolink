@@ -11,6 +11,14 @@
       }
     ]
   },
+  "preview": {
+    "handlers": [
+      {
+        "options": ["*"],
+        "execute": "INSTALL_SCOPE.setOptions(INSTALL_OPTIONS)"
+      }
+    ]
+  },
   "options": {
     "properties": {
       "email": {
@@ -22,7 +30,7 @@
         "type": "boolean"
       },
       "phone": {
-        "order": 0,
+        "order": 1,
         "type": "boolean",
         "title": "Phone Numbers",
         "description": "Link phone numbers on devices that can make calls.",
@@ -30,7 +38,7 @@
         "type": "boolean"
       },
       "mention": {
-        "order": 0,
+        "order": 2,
         "type": "string",
         "title": "Mentions",
         "description": "Link usernames beginning with “@”",
@@ -47,7 +55,7 @@
         }
       },
       "hashtag": {
-        "order": 0,
+        "order": 3,
         "type": "string",
         "title": "Hashtags",
         "description": "Link hashtags beginning with “#”",
@@ -65,29 +73,28 @@
           "facebook": "Facebook"
         }
       },
+      "showAdvancedOptions": {
+        "order": 4,
+        "type": "boolean",
+        "title": "Show advanced options",
+        "default": false,
+        "type": "boolean"
+      },
       "advanced": {
-        "order": 10,
+        "order": 5,
+        "showIf": "showAdvancedOptions",
         "title": "Advanced Options",
         "type": "object",
         "properties": {
-          "showAdvancedOptions": {
-            "order": 0,
-            "type": "boolean",
-            "title": "Show advanced options",
-            "default": false,
-            "type": "boolean"
-          },
           "newWindow": {
-            "order": 1,
-            "showIf": "advanced.showAdvancedOptions",
+            "order": 0,
             "type": "boolean",
             "title": "Open links in new tab",
             "default": false,
             "type": "boolean"
           },
           "stripPrefix": {
-            "order": 2,
-            "showIf": "advanced.showAdvancedOptions",
+            "order": 1,
             "type": "boolean",
             "title": "Hide “http” and “www” from link",
             "default": false,
@@ -95,7 +102,6 @@
           },
           "location": {
             "order": 3,
-            "showIf": "advanced.showAdvancedOptions",
             "title": "Location",
             "type": "string",
             "format": "selector",
