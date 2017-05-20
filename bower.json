@@ -1,6 +1,6 @@
 {
   "name": "autolink",
-  "version": "0.0.5",
+  "version": "0.0.0",
   "authors": [
     "Adam Schwartz <adam@eager.io>"
   ],
@@ -12,6 +12,6 @@
     "tests"
   ],
   "dependencies": {
-    "Autolinker.js": "~0.11.1"
+    "Autolinker.js": "1.4.3"
   }
 }

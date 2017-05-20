@@ -1,10 +1,9 @@
-node_modules
-bower_components/npm-debug.log
-bower_components/Autolinker.js/bower.json
-bower_components/Autolinker.js/Gruntfile.js
-bower_components/Autolinker.js/LICENSE
-bower_components/Autolinker.js/README.md
-bower_components/Autolinker.js/.bower.json
-bower_components/Autolinker.js/package.json
-bower_components/Autolinker.js/src/Autolinker.js
-bower_components/Autolinker.js/dist/Autolinker.min.js
+# Ignore bundler config.
+/.bundle
+
+# Ignore all logfiles and tempfiles.
+.DS_Store
+*.log
+/tmp
+node_modules/**/*
+bower_components/**/*
