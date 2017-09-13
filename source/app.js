@@ -22,6 +22,8 @@
     'iframe'
   ]
 
+  var sanitizer = document.createElement('textarea')
+
   function parse (node) {
     if (node.nodeType === Node.ELEMENT_NODE && ineligibleTags.indexOf(node.tagName.toLowerCase()) !== -1) {
       return
@@ -35,7 +37,8 @@
       var serializer = document.createElement('div')
       var fragment = document.createDocumentFragment()
 
-      serializer.innerHTML = autolinker.link(node.textContent)
+      sanitizer.textContent = node.textContent
+      serializer.innerHTML = autolinker.link(sanitizer.innerHTML)
 
       var serialChild
       while (serialChild = serializer.firstChild) { // eslint-disable-line no-cond-assign
@@ -65,13 +68,13 @@
       phone: options.phone,
       mention: options.mention === 'none' ? false : options.mention,
       hashtag: options.hashtag === 'none' ? false : options.hashtag,
-      stripPrefix: options.stripPrefix,
-      newWindow: options.newWindow,
+      stripPrefix: options.advanced.stripPrefix,
+      newWindow: options.advanced.newWindow,
       truncate: {
         length: 0,
         location: 'end'
       },
-      stripTrailingSlash: false,
+      stripTrailingSlash: true,
       className: INSTALL_ID === 'preview' ? 'cf-app-autolink-preview' : ''
     })
 
@@ -92,7 +95,7 @@
 
       for (var i = 0; i < links.length; i++) {
         var link = links[i]
-        var textNode = document.createTextNode(link.textContent)
+        var textNode = document.createTextNode(link.href)
 
         link.parentNode.replaceChild(textNode, link)
       }
